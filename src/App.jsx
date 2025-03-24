@@ -166,7 +166,3 @@ export default function GameMockup() {
     </div>
   );
 }
-
-    </div>
-  );
-}
