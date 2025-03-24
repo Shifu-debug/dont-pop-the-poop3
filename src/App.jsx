@@ -90,11 +90,13 @@ export default function GameMockup() {
   const skins = ["🐦", "🦅", "🐧", "🐤", "🐲"];
 
   return (
-    <div className="w-screen h-screen bg-sky-300 overflow-hidden relative"
-         onMouseDown={handleFly}
-         onMouseUp={handleStopFly}
-         onTouchStart={handleFly}
-         onTouchEnd={handleStopFly}>
+    <div
+      className="w-screen h-screen bg-sky-300 overflow-hidden relative"
+      onMouseDown={handleFly}
+      onMouseUp={handleStopFly}
+      onTouchStart={handleFly}
+      onTouchEnd={handleStopFly}
+    >
       <div className="absolute top-4 left-4 text-xl font-bold">
         💩 Pressure: {poopPressure}% | 🏆 Score: {score}
       </div>
@@ -104,46 +106,67 @@ export default function GameMockup() {
             {poopPressure >= 100 ? "POOP EXPLOSION 💥" : "YOU POOPED ON SOMEONE 💩"}
           </div>
           <div className="mt-4 text-2xl font-semibold">Score: {score}</div>
-          <button onClick={resetGame}
-                  className="mt-4 px-6 py-3 bg-white rounded-full text-lg font-semibold shadow-md hover:bg-yellow-100">
+          <button
+            onClick={resetGame}
+            className="mt-4 px-6 py-3 bg-white rounded-full text-lg font-semibold shadow-md hover:bg-yellow-100"
+          >
             Play Again
           </button>
         </div>
       )}
-      <motion.div className="w-16 h-16 bg-yellow-300 rounded-full shadow-lg border-2 border-black flex items-center justify-center text-2xl"
-                  animate={{ y: birdY }}
-                  transition={{ type: "spring", stiffness: 200 }}
-                  style={{ position: "absolute", left: birdX - 32 }}>
+
+      <motion.div
+        className="w-16 h-16 bg-yellow-300 rounded-full shadow-lg border-2 border-black flex items-center justify-center text-2xl"
+        animate={{ y: birdY }}
+        transition={{ type: "spring", stiffness: 200 }}
+        style={{ position: "absolute", left: birdX - 32 }}
+      >
         {skin}
       </motion.div>
+
       {pedestrians.map((p) => (
-        <div key={p.id}
-             className="w-10 h-16 bg-green-600 rounded-md absolute bottom-0"
-             style={{ left: p.x }} />
+        <div
+          key={p.id}
+          className="w-10 h-16 bg-green-600 rounded-md absolute bottom-0"
+          style={{ left: p.x }}
+        />
       ))}
+
       {poopDrops.map((drop, index) => (
-        <motion.div key={index}
-                    className="absolute text-xl"
-                    animate={{ y: drop.y }}
-                    transition={{ duration: 0.1 }}
-                    style={{ left: drop.x }}>
+        <motion.div
+          key={index}
+          className="absolute text-xl"
+          animate={{ y: drop.y }}
+          transition={{ duration: 0.1 }}
+          style={{ left: drop.x }}
+        >
           💩
         </motion.div>
       ))}
-      <button onClick={handlePoop}
-              className="absolute bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 bg-white rounded-full text-lg font-semibold shadow-md hover:bg-yellow-100">
+
+      <button
+        onClick={handlePoop}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 bg-white rounded-full text-lg font-semibold shadow-md hover:bg-yellow-100"
+      >
         Drop the Poop
       </button>
+
       <div className="absolute top-4 right-4">
         <label className="text-sm mr-2 font-semibold">Bird Skin:</label>
-        <select value={skin}
-                onChange={(e) => setSkin(e.target.value)}
-                className="px-2 py-1 rounded">
+        <select
+          value={skin}
+          onChange={(e) => setSkin(e.target.value)}
+          className="px-2 py-1 rounded"
+        >
           {skins.map((s) => (
             <option key={s} value={s}>{s}</option>
           ))}
         </select>
       </div>
+    </div>
+  );
+}
+
     </div>
   );
 }
